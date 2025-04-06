@@ -1,0 +1,20 @@
+{
+  "name": "barebone-ui",
+  "private": true,
+  "version": "0.0.0",
+  "author": "Hobin Jang",
+  "license": "MIT",
+  "packageManager": "pnpm@10.7.1",
+  "scripts": {
+    "build": "lage build",
+    "build:dialog": "lage build --scope '@barebone-ui/dialog' --no-dependents",
+    "build:app": "lage build --scope app --no-dependents",
+    "dev:dialog": "pnpm --filter '@barebone-ui/dialog' run dev --silent",
+    "dev:app": "pnpm --filter app run dev"
+  },
+  "devDependencies": {
+    "lage": "^2.14.2",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  }
+}
