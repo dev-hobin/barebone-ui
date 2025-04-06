@@ -9,7 +9,7 @@
     "build": "lage build",
     "build:dialog": "lage build --scope '@barebone-ui/dialog' --no-dependents",
     "build:app": "lage build --scope app --no-dependents",
-    "dev:dialog": "pnpm --filter '@barebone-ui/dialog' run dev --silent",
+    "dev:dialog": "pnpm --filter '@barebone-ui/dialog' run dev --silent & pnpm run dev:app",
     "dev:app": "pnpm --filter app run dev"
   },
   "devDependencies": {

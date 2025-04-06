@@ -1,0 +1,73 @@
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  overflow: auto;
+
+  &[data-state='open'] {
+    animation: fadeUp 0.2s ease-out;
+  }
+  &[data-state='closed'] {
+    animation: fadeDown 0.2s ease-out;
+  }
+}
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+
+  &[data-state='open'] {
+    animation: fadeIn 0.2s ease-out;
+  }
+  &[data-state='closed'] {
+    animation: fadeOut 0.2s ease-out;
+  }
+}
