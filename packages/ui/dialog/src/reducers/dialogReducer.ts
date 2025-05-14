@@ -20,33 +20,33 @@ export type DialogAction = {
   onOpenChange: (open: boolean) => void
 }
 
-export type DialogState = DialogContext & DialogAction
+export type DialogState = {
+  context: DialogContext
+  action: DialogAction
+}
 
 export type DialogEvent =
   | { type: 'OPEN' }
   | { type: 'CLOSE' }
   | {
       type: 'SYNC'
-      payload: DeepPartial<DialogContext> & Partial<DialogAction>
+      payload: DialogContext
     }
 
 type UseDialogProps = DialogState
 export function useDialog(defaultState: UseDialogProps) {
-  return useReducer(
-    (state: DialogContext & DialogAction, event: DialogEvent) => {
-      if (event.type === 'OPEN') {
-        state.onOpenChange(true)
-        return { ...state, open: true }
-      }
-      if (event.type === 'CLOSE') {
-        state.onOpenChange(false)
-        return { ...state, open: false }
-      }
-      if (event.type === 'SYNC') {
-        return { ...state, ...event.payload }
-      }
-      return state
-    },
-    defaultState,
-  )
+  return useReducer((state: DialogState, event: DialogEvent) => {
+    if (event.type === 'OPEN') {
+      state.action.onOpenChange(true)
+      return { ...state, context: { ...state.context, open: true } }
+    }
+    if (event.type === 'CLOSE') {
+      state.action.onOpenChange(false)
+      return { ...state, context: { ...state.context, open: false } }
+    }
+    if (event.type === 'SYNC') {
+      return { ...state, context: event.payload }
+    }
+    return state
+  }, defaultState)
 }

@@ -1,2 +1,2 @@
 export * from './composeRefs'
-export * from './syncState'
+export * from './handleSync'
